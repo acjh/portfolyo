@@ -2,3 +2,4 @@ codecov
 coverage
 pytest-cov
 pytest
+pytest-timeout
