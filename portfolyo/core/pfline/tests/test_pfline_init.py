@@ -10,24 +10,24 @@ import pandas as pd
 from portfolyo import dev, Kind, PfLine, SinglePfLine, MultiPfLine
 import pytest
 
-import zoneinfo
-from zoneinfo._common import ZoneInfoNotFoundError
+import sys
+if sys.version_info >= (3, 9):
+    import zoneinfo
+    from zoneinfo._common import ZoneInfoNotFoundError
 
+    def load_tzdata(key):
+        from importlib import resources
 
-def load_tzdata(key):
-    from importlib import resources
+        components = key.split("/")
+        package_name = ".".join(["tzdata.zoneinfo"] + components[:-1])
+        resource_name = components[-1]
 
-    components = key.split("/")
-    package_name = ".".join(["tzdata.zoneinfo"] + components[:-1])
-    resource_name = components[-1]
+        try:
+            return resources.files(package_name).joinpath(resource_name).open("rb")
+        except (ImportError, FileNotFoundError, UnicodeEncodeError):
+            raise ZoneInfoNotFoundError(f"No time zone found with key {key}")
 
-    try:
-        return resources.files(package_name).joinpath(resource_name).open("rb")
-    except (ImportError, FileNotFoundError, UnicodeEncodeError):
-        raise ZoneInfoNotFoundError(f"No time zone found with key {key}")
-
-
-zoneinfo._common.load_tzdata = load_tzdata
+    zoneinfo._common.load_tzdata = load_tzdata
 
 
 @dataclass
