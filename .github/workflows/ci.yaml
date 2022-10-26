@@ -28,7 +28,7 @@ jobs:
           pip install -r requirements-test.txt     
 
       - name: Run tests
-        run: pytest portfolyo\core\pfline\tests\test_pfline_init.py --timeout=10 -s
+        run: pytest portfolyo\core\pfline\tests\test_pfline_init.py --timeout=2 -s
 
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v1
