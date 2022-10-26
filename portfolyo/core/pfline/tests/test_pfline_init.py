@@ -180,6 +180,8 @@ def test_init_A(
             _ = testtype(itc.data_in)
         return
 
+    print('locals:', locals())
+    print('itc.data_in:', itc.data_in)
     result = testtype(itc.data_in)
     result_df = result.df(columns)
 
