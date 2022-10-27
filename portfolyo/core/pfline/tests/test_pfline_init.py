@@ -11,7 +11,7 @@ from portfolyo import dev, Kind, PfLine, SinglePfLine, MultiPfLine
 import pytest
 
 import sys
-if sys.version_info >= (3, 9):
+if False:
     import zoneinfo
     from zoneinfo._common import ZoneInfoNotFoundError
 
