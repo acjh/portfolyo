@@ -5,3 +5,4 @@ pint==0.19.2
 pint-pandas
 matplotlib
 colorama
+pytz==2022.2.1
