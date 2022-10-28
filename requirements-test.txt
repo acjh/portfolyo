@@ -2,4 +2,5 @@ codecov
 coverage
 pytest-cov
 pytest
+pytest-profiling
 pytest-timeout
